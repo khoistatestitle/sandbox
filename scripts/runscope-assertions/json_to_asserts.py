@@ -52,24 +52,6 @@ def parse_command_line_arguments() -> Tuple[str, List[int]]:
     return args.file_name, args.integers
 
 
-def get_command_line_arguments() -> List[int]:
-    """ Get from stdin a string containing file name followed by Settlement Type IDs, space delimited.
-
-        Example: sample.json 401 901
-
-        @returns: a list of Settlement Type IDs as integers
-    """
-    prev_line = None
-    for line in sys.stdin:
-        line = line.rstrip()
-        if not line:
-            break
-        prev_line = line
-
-    file_name, *ids = prev_line.split(' ')
-    return file_name, list(map(int, ids))
-
-
 def main():
     """ Convert JSON payload obtained from ResWare API+ GET /fees
         to JavaScript assertion statements for use in Runscope tests
